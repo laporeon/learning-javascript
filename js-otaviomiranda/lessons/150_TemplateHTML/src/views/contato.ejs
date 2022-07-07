@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <%- include('partials/nav'); %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2"></div>
+    
+        <div class="col-lg-8 my-3">
+          <h1 class="text-center">Contato</h1>
+          <p class="text-center lead">Crie ou edite seu contato abaixo.</p>
+    
+          <%- include('partials/messages') %>
+    
+          <% if(contato._id) { %>
+          <form action="/contato/edit/<%= contato._id %>" method="POST">
+          <% } else { %>
+          <form action="/contato/register" method="POST">
+          <% } %>
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            <div class="form-group">
+              <label>Nome</label>
+              <input value="<%= contato.nome %>" type="text" class="form-control" name="nome">
+            </div>
+            <div class="form-group">
+              <label>Sobrenome</label>
+              <input value="<%= contato.sobrenome %>" type="text" class="form-control" name="sobrenome">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input value="<%= contato.email %>" type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input value="<%= contato.telefone %>" type="tel" class="form-control" name="telefone">
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+    
+    
+        </div>
+        
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="/assets/js/bundle.js"></script>
+  </body>
+</html>
